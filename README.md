@@ -1,39 +1,39 @@
 ## Structure
 
 * src
-**  Source code of the backpropagation algorithm
+  * Source code of the backpropagation algorithm
 
 *data
-** Training and validation sets
+  * Training and validation sets
 
 * data/train
-** Data set generated from two images
+  * Data set generated from two images
 
 * data/train2
-**  Data set generated from ten images
+  * Data set generated from ten images
 
 * src/FourierMellin
-**  MATLAB source code of the Fourier-Mellin transform
+  * MATLAB source code of the Fourier-Mellin transform
 
 ## How to generate the training set
 
-Go to data/train or data/train2 and execute ./import2.pl
+Go to *data/train* or *data/train2* and execute *./import2.pl*
 (edit the script to change the size of the data set).
 
-Use src/FourierMellin/applyCavanagh.m to generate the raw and
-invariant features for training (raw.txt and features.txt).
+Use *src/FourierMellin/applyCavanagh.m* to generate the raw and
+invariant features for training (*raw.txt* and *features.txt*).
 
-Use data/tableto{lisp,svm}.pl to convert the data set
+Use *data/tableto{lisp,svm}.pl* to convert the data set
 to a format which can be read by lisp or the support vector
 library:
 ```sh
 ../tabletolisp.pl < features.txt > features.lisp
 ```
-The script data/train2/scale.R can be used to scale the
+The script *data/train2/scale.R* can be used to scale the
 data appropriately.
 
 ## How to train a neural network
-Load 'learning-algorithm.lisp' into lisp and execute
+Load *'learning-algorithm.lisp'* into lisp and execute
 
 ```lisp
 (defparameter features
