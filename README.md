@@ -3,7 +3,7 @@
 * src
   * Source code of the backpropagation algorithm
 
-*data
+* data
   * Training and validation sets
 
 * data/train
