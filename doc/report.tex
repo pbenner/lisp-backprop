@@ -1,0 +1,363 @@
+% -*- mode: latex -*-
+%
+% file identification
+% --------------------------------------------------------------------------
+\def\FileTitle{Rotation, scale and translation invariant features for character classification}
+\def\FileKeywords{}
+\def\FileAuthor{Philipp Benner}
+\def\FileAuthorEmail{\email{philipp.benner@ini.phys.ethz.ch}}
+\def\FileUniversity{UNI / ETH Zurich}
+\def\FileFaculty{}
+\def\FileDepartment{Institute of Neuroinformatics}
+\def\FileAddress{}
+\def\FileDate{July 24, 2009}
+% --------------------------------------------------------------------------
+\documentclass[%
+% document options
+% --------------------------------------------------------------------------
+  10pt,%%
+  a4paper,%%
+%  openany,%%
+  cleardoubleempty,%%
+%  titlepage,%%
+%  notitlepage,%%
+%  oneside,%%
+  twoside,%%
+%  twocolumn,%%
+%  headsepline,%%
+%  footsepline,%%
+%  abstracton,%%
+%  smallheadings,%%
+%  DIVcalc,%% recalculate page spread (Satzspiegel)
+  BCOR15mm,%% binding margin (for twoside documents)
+%  draft,%% draft version without graphics etc.
+  final,%% final version including graphics
+]
+% document classes
+% --------------------------------------------------------------------------
+%{scrreprt}
+{scrartcl}
+%{scrbook}
+%{memoir}
+%{article}
+%{book}
+% --------------------------------------------------------------------------
+
+% some additional packages
+% --------------------------------------------------------------------------
+% umlaut
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+%\usepackage{a4}
+%\usepackage{a4wide}
+\usepackage[english]{babel}
+%\usepackage{ngerman}
+\usepackage{url}
+\urlstyle{tt}
+%\usepackage{fullpage}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{tikz}
+%\usepackage{fancyvrb}
+%\usepackage{fancybox}
+\usepackage[intoc]{nomencl}
+%\usepackage[intoc]{nomentbl}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{subfigure}
+%\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage[small,bf]{caption}
+\usepackage{appendix}
+\usepackage{enumitem}
+
+% pdftricks/pstricks
+%\usepackage[shell,debug]{pdftricks}
+%% \usepackage[shell]{pdftricks}
+%% \begin{psinputs}
+%% \usepackage{txfonts}
+%% \usepackage{pstricks}
+%% \usepackage{color}
+%% \usepackage{pstcol}
+%% \usepackage{pst-plot}
+%% \usepackage{pst-tree}
+%% \usepackage{pst-eps}
+%% \usepackage{multido}
+%% \usepackage{pst-node}
+%% \usepackage{pst-eps}
+%% \usepackage{pst-3dplot}
+%% \usepackage{xkeyval}
+%% \usepackage{pst-xkey}
+%% \usepackage{rrgtrees}
+%% \end{psinputs}
+
+% two text slices in parallel (\minipage command)
+%\usepackage{parallel}
+% text in multiple columns (like in articles)
+%\usepackage{multicol}
+
+% do not indent on new paragraph but make a small hspace
+%\usepackage[parfill]{parskip}
+
+% latex/math symbols (mathbb)
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\theoremstyle{plain}
+%\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{example}{Example}
+\newtheorem{results}{Results}
+\usepackage{bbm}
+\usepackage{latexsym}
+\usepackage{exscale}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+%\usepackage{stmaryrd}
+%\usepackage{rotating}
+% algorithmic environment
+\usepackage{algorithm}
+\usepackage[end]{algpseudocode}
+
+% trees for computational linguistics
+%\usepackage{parsetree}
+%\usepackage{avm}
+
+% title pages
+%\usepackage{emlix-title}
+% own macro definitions
+\usepackage{macros}
+
+% font selection
+% --------------------------------------------------------------------------
+%\usepackage{avant}
+%\usepackage{bookman}
+%\usepackage{chancery}
+%\usepackage{charter}
+%\usepackage{courier}
+%\usepackage{helvet}
+\usepackage{lmodern}
+%\usepackage{txfonts}
+%\usepackage{newcent}
+%\usepackage{palatino}
+%\usepackage{times}
+
+% page style
+% --------------------------------------------------------------------------
+\usepackage[automark]{scrpage2}
+%\pagestyle{scrplain}
+\pagestyle{scrheadings}
+\ihead[]{\headmark}
+\chead[]{}
+\ohead[]{}
+\ifoot[]{}
+\cfoot[\pagemark]{\pagemark}
+\ofoot[]{}
+% \lehead[scrplain-left-even ]{scrheadings-left-even }
+% \cehead[scrplain-concentric-even ]{scrheadings-concentric-even }
+% \rehead[scrplain-right-even ]{scrheadings-right-even }
+% \lefoot[scrplain-left-even ]{scrheadings-left-even }
+% \cefoot[scrplain-concentric-even ]{scrheadings-concentric-even }
+% \refoot[scrplain-right-even ]{scrheadings-right-even }
+% \lohead[scrplain-left-odd ]{scrheadings-left-odd }
+% \cohead[scrplain-concentric-odd ]{scrheadings-concentric-odd }
+% \rohead[scrplain-right-odd ]{scrheadings-right-odd }
+% \lofoot[scrplain-left-odd ]{scrheadings-left-odd }
+% \cofoot[scrplain-concentric-odd ]{scrheadings-concentric-odd }
+% \rofoot[scrplain-right-odd ]{scrheadings-right-odd }
+% \ihead[scrplain-inside ]{scrheadings-inside }
+% \chead[scrplain-concentric ]{scrheadings-concentric }
+% \ohead[scrplain-outside ]{scrheadings-outside }
+% \ifoot[scrplain-inside ]{scrheadings-inside }
+% \cfoot[scrplain-concentric ]{scrheadings-concentric }
+% \ofoot[scrplain-outside ]{scrheadings-outside }
+%\setheadtopline{1.2pt}
+%\setheadsepline{0.8pt}
+%\setfootsepline{0.8pt}
+%\setfootbotline{0pt}
+
+% basic settings for listings
+% --------------------------------------------------------------------------
+\usepackage{listings}
+\usepackage{color}
+\definecolor{mygray}{gray}{.85}
+\definecolor{mywhite}{gray}{1}
+\lstset{%
+  basicstyle=\tiny,
+  frame=single, % shadowbox
+  showspaces=false,
+  showstringspaces=false,
+  backgroundcolor=\color{mywhite},
+  numbers=left,
+  numberstyle=\tiny,
+  emphstyle=\bfseries,
+  commentstyle=\itshape
+}
+% latex beamer configuration
+% --------------------------------------------------------------------------
+% enable half-transparent overlays
+%\setbeamercovered{transparent}
+% do not show a navigation bar
+%\beamertemplatenavigationsymbolsempty
+% show page number
+%\setbeamertemplate{footline}[frame number]
+
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{boxes}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{default}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{default}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{sidebartab}
+%\usecolortheme{structure}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+% bibtex setup
+% --------------------------------------------------------------------------
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+%\bibliographystyle{plain}
+%\bibliographystyle{siam}
+%\bibliographystyle{acm}
+%\bibliographystyle{alpha}
+%\bibliographystyle{apalike}
+%\bibliographystyle{abbrv}
+%\bibliographystyle{unsrt}
+%\bibliographystyle{ieeetr}
+
+% makeidx
+% --------------------------------------------------------------------------
+\usepackage{makeidx}
+\makeindex
+\makeatletter
+% associate a word with an entry in the index and use italic font
+\newcommand{\catchword}[2][]{\@ifempty{#1}{\textit{#2}\index{#2}}{\textit{#2}\index{#1}}}
+\makeatother
+
+% hyperref setup
+% --------------------------------------------------------------------------
+\usepackage[pdftex,pdfpagelabels=true,hypertexnames=false]{hyperref}
+\hypersetup{%
+  pdftitle      = {\FileTitle{}},
+  pdfsubject    = {\FileDepartment{}},
+  pdfkeywords   = {\FileKeywords{}},
+  pdfauthor     = {\FileAuthor{} \FileAuthorEmail{}},
+  pdfcreator    = {\LaTeX},
+  linktocpage   = true,
+  colorlinks    = true,
+  linkcolor     = black,
+  linkcolor     = black,
+  urlcolor      = black,
+  citecolor     = black,
+}
+% document beginning
+% --------------------------------------------------------------------------
+% no section number display
+\makeatletter
+\def\@seccntformat#1{}
+\makeatother
+\onehalfspacing
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{center}
+    {\Large Theory, Programming and Simulation of Neural Networks (Prof. Ruedi Stoop)}\par
+    \vspace{0.3cm}
+    {\Large \textsc{\@title}}\par
+    \vspace{0.3cm}
+    \@author\par
+    \@date\vspace{0.5cm}
+  \end{center}%
+}
+\makeatother
+\begin{document}
+\title{\FileTitle}
+\author{\FileAuthor\ \FileAuthorEmail}
+\date{\FileDate}
+
+\maketitle
+%\setstretch{1.25}
+%% \begin{titlepage}
+%%   \begin{center}
+%%     \vspace*{10ex}
+%%     \includegraphics[width=8ex]{master-thesis_unilogo.jpg}\\
+%%     {\Large\textsc \FileUniversity}\vspace{3ex}\\
+%%     {\Large \FileDepartment}\vspace{10ex}\\
+%%     {\Large Master's Thesis}\vspace{18ex}\\
+%%     {\Large \textsl \FileTitle}\vspace{12ex}\\
+%%     \vfill
+%%     \begin{tabular}{lll}
+%%       \textit{Author}:&&\textit{Supervisors}:\\
+%%       \FileAuthor &\quad\quad\quad& Prof. Dr. Frank Pasemann\\
+%%                   &\quad\quad\quad& Prof. Dr. Peter K\"{o}nig
+%%     \end{tabular}\\
+%%     \vspace{6ex}
+%%     \FileDate
+%%   \end{center}
+%% \end{titlepage}
+
+%\frontmatter
+%\tableofcontents
+%\makenomenclature
+
+% main part
+% --------------------------------------------------------------------------
+%\mainmatter
+\input{report_content.texinput}
+
+% appendices (bibliography, index etc.)
+% --------------------------------------------------------------------------
+%\newpage
+%\begin{appendices}
+  % appendices not structured in sections
+%\end{appendices}
+%\begin{subappendices}
+%  % appendices structured in sections
+%  \input{master-thesis_appendix01.texinput}
+%  \input{master-thesis_appendix02.texinput}
+%\end{subappendices}
+%\backmatter
+%\renewcommand{\nomlabel}[1]{\textit{#1}}
+%\printnomenclature[1,3in]
+%\bibliography{master-thesis}
+%\printindex
+%\input{master-thesis_affirmation.texinput}
+% --------------------------------------------------------------------------
+\end{document}
