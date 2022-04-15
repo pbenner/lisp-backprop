@@ -1,0 +1,4 @@
+Test2.m runs the test
+LogPolar2.m is a log polar mapping
+ShowLogPolar2.m will display a log polar mapping of the input image. I would show it but for some reason this shitty software won't display the warped image when I save it to file!
+
